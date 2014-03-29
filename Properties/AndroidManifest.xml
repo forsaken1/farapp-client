@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="com.farapp.farapp">
+	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="15" />
+	<!--  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+  <permission android:name="com.example.gcm.permission.C2D_MESSAGE"
+      android:protectionLevel="signature" />
+  <uses-permission android:name="com.example.gcm.permission.C2D_MESSAGE" />-->
+	<application android:label="FarApp"></application>
+</manifest>
