@@ -22,5 +22,6 @@ namespace FarApp
         public string MainPhotoUrl { get; set; }
         public string Details { get; set; }
         public int Price { get; set; }
+        public string MainImagePath { get; set; }
     }
 }

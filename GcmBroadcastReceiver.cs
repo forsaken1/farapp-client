@@ -23,6 +23,6 @@ namespace FarApp
         
         //IMPORTANT: Change this to your own Sender ID!
         //The SENDER_ID is your Google API Console App Project Number
-        public static string[] SENDER_IDS = new string[] { "1078115685642" };
+        public static string[] SENDER_IDS = new string[] { "617404061855" };
     }
 }

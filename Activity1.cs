@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 using Android.App;
 using Android.Content;
@@ -17,14 +18,28 @@ namespace FarApp
     public class Activity1 : Activity
     {
         int count = 1;
-        
+
+        void Init()
+        {
+            var imagesPath = Path.Combine(FilesDir.AbsolutePath,"Images");
+            if (!Directory.Exists(imagesPath))
+            {
+                Directory.CreateDirectory(imagesPath);
+            }
+        }
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
+            Init();
             GcmClient.CheckDevice(this);
             GcmClient.CheckManifest(this);
-
+            GcmClient.Register(this, GcmBroadcastReceiver.SENDER_IDS);
+            
+            if (GcmClient.IsRegisteredOnServer(this))
+            {
+                Console.WriteLine("Registered ID: " + GcmClient.GetRegistrationId(this));
+            }
             SetContentView(Resource.Layout.Main);
             this.FragmentManager.BeginTransaction().Replace(Resource.Id.Main_Layout, new ListResults()).Commit();
         }

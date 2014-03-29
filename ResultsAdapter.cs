@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 using Android.App;
 using Android.Content;
@@ -16,16 +17,27 @@ namespace FarApp
     {
         List<Result> items;
         Activity context;
-        
-        public ResultsAdapter(Activity context)
-        {            
+        ApiClient client;
+        string directoryPath;
+        public ResultsAdapter(Activity context,string directoryPath)
+        {
+            this.directoryPath = directoryPath;
+            client = new ApiClient("");
             items = new List<Result>();
             this.context = context; 
         }
         public void AddItems(IEnumerable<Result> newItems)
         {
             items.AddRange(newItems);
-            
+            Task.Factory.StartNew(() =>
+                {
+                    foreach (var item in newItems.Where(i=>i.MainPhotoUrl != null))
+                    {
+                        var path = client.DownloadImage(directoryPath, item.MainPhotoUrl);
+                        item.MainImagePath = path;
+                        context.RunOnUiThread(() => this.NotifyDataSetChanged());
+                    }
+                });
             this.NotifyDataSetChanged();
         }
         public void Clear()
@@ -60,9 +72,13 @@ namespace FarApp
             title.Text = items[position].Title;
             details.Text = items[position].Details;
             price.Text = items[position].Price.ToString() + " ð.";
-            if (items[position].MainPhotoUrl == null)
+            if (items[position].MainImagePath == null)
             {
                 imageView.SetImageResource(Resource.Drawable.no_image_placeholder);
+            }
+            else
+            {
+                imageView.SetImageURI(Android.Net.Uri.Parse(items[position].MainImagePath));
             }
             return view;
         }

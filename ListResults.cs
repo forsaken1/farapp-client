@@ -17,17 +17,27 @@ namespace FarApp
     {
         public override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
-                        
+            base.OnCreate(savedInstanceState);                        
         }
         ResultsAdapter adapter;
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
-            adapter = new ResultsAdapter(this.Activity);
+            adapter = new ResultsAdapter(this.Activity,System.IO.Path.Combine(this.Activity.FilesDir.AbsolutePath,"Images"));
             var results = new ApiClient("12313123").GetNewAds();
             ListAdapter = adapter;
+            
+            ListView.ItemClick += ListView_ItemSelected;
             adapter.AddItems(results);
             base.OnViewCreated(view, savedInstanceState);
+        }
+
+        void ListView_ItemSelected(object sender, AdapterView.ItemClickEventArgs e)
+        {            
+            var detailsFragment = new ResultDetails(adapter[e.Position]);
+            this.FragmentManager.BeginTransaction().
+                Replace(Resource.Id.Main_Layout, detailsFragment)
+                .AddToBackStack("details")
+                .Commit();
         }
 
         public override void OnActivityResult(int requestCode, Android.App.Result resultCode, Intent data)

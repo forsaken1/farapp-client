@@ -17,6 +17,7 @@ namespace FarApp
 
         protected override void OnRegistered(Context context, string registrationId)
         {
+            Console.WriteLine(" i am registered!");
             //Receive registration Id for sending GCM Push Notifications to
         }
 
@@ -27,10 +28,12 @@ namespace FarApp
 
         protected override void OnMessage(Context context, Intent intent)
         {
+            Console.WriteLine("some message received!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             //Push Notification arrived - print out the keys/values
-            if (intent == null || intent.Extras == null)
-                foreach (var key in intent.Extras.KeySet())
-                    Console.WriteLine("Key: {0}, Value: {1}");
+            if (intent != null && intent.Extras != null)
+            {
+                CreateNotification();
+            }
         }
 
         protected override bool OnRecoverableError(Context context, string errorId)
@@ -40,7 +43,7 @@ namespace FarApp
 
         protected override void OnError(Context context, string errorId)
         {
-            //Some more serious error happened
+            Console.WriteLine(errorId);
         }
         void CreateNotification()
         {
@@ -51,6 +54,5 @@ namespace FarApp
             notification.SetLatestEventInfo(this,"title","content",PendingIntent.GetActivity(this,0,uiIntent,PendingIntentFlags.CancelCurrent));
             notManager.Notify(1, notification);
         }
-
     }
 }
