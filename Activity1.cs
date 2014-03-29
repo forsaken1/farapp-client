@@ -12,13 +12,11 @@ using Gcm.Client;
 
 namespace FarApp
 {
-    [Activity(Label = "FarApp", MainLauncher = true, Icon = "@drawable/icon",
+    [Activity(Label = "FarApp", MainLauncher = true, Icon = "@drawable/orange_arrow",
         ConfigurationChanges = ConfigChanges.KeyboardHidden|ConfigChanges.Orientation,
         ScreenOrientation = ScreenOrientation.Portrait)]
     public class Activity1 : Activity
     {
-        int count = 1;
-
         void Init()
         {
             var imagesPath = Path.Combine(FilesDir.AbsolutePath,"Images");

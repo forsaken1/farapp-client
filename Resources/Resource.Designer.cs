@@ -117,19 +117,19 @@ namespace FarApp
 			public const int cab_background_top_orange = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
-			public const int Icon = 2130837516;
+			public const int list_focused_orange = 2130837516;
 			
 			// aapt resource value: 0x7f02000d
-			public const int list_focused_orange = 2130837517;
+			public const int list_pressed_orange = 2130837517;
 			
 			// aapt resource value: 0x7f02000e
-			public const int list_pressed_orange = 2130837518;
+			public const int menu_dropdown_panel_orange = 2130837518;
 			
 			// aapt resource value: 0x7f02000f
-			public const int menu_dropdown_panel_orange = 2130837519;
+			public const int no_image_placeholder = 2130837519;
 			
 			// aapt resource value: 0x7f020010
-			public const int no_image_placeholder = 2130837520;
+			public const int orange_arrow = 2130837520;
 			
 			// aapt resource value: 0x7f020011
 			public const int progress_bg_orange = 2130837521;

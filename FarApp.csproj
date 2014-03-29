@@ -89,9 +89,6 @@
     <AndroidResource Include="Resources\Values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\Icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\Drawable\tab_indicator_ab_orange.xml" />
     <AndroidResource Include="Resources\Drawable\ab_background_textured_orange.xml" />
@@ -182,7 +179,7 @@
     <AndroidResource Include="Resources\Drawable\no_image_placeholder.png" />
     <AndroidResource Include="Resources\Anim\slide_in_right.xml" />
     <AndroidResource Include="Resources\Anim\slide_out_left.xml" />
-    <AndroidResource Include="Resources\Drawable\orange-arrow.png" />
+    <AndroidResource Include="Resources\Drawable\orange_arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="GCMClient">
