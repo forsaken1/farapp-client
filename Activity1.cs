@@ -27,6 +27,7 @@ namespace FarApp
             GcmClient.CheckManifest(this);
 
             SetContentView(Resource.Layout.Main);
+            this.FragmentManager.BeginTransaction().Replace(Resource.Id.Main_Layout, new Settings()).Commit();
 
             Button button = FindViewById<Button>(Resource.Id.MyButton);
 

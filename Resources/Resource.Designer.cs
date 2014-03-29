@@ -29,6 +29,22 @@ namespace FarApp
 			global::Gcm.Client.Resource.String.library_name = global::FarApp.Resource.String.library_name;
 		}
 		
+		public partial class Array
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int Categories = 2131034112;
+			
+			static Array()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Array()
+			{
+			}
+		}
+		
 		public partial class Attribute
 		{
 			
@@ -61,8 +77,23 @@ namespace FarApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int MyButton = 2131034112;
+			// aapt resource value: 0x7f060000
+			public const int Main_Layout = 2131099648;
+			
+			// aapt resource value: 0x7f060001
+			public const int MyButton = 2131099649;
+			
+			// aapt resource value: 0x7f060003
+			public const int resultItem_details = 2131099651;
+			
+			// aapt resource value: 0x7f060004
+			public const int resultItem_price = 2131099652;
+			
+			// aapt resource value: 0x7f060002
+			public const int resultItem_title = 2131099650;
+			
+			// aapt resource value: 0x7f060005
+			public const int settings_list = 2131099653;
 			
 			static Id()
 			{
@@ -79,6 +110,12 @@ namespace FarApp
 			
 			// aapt resource value: 0x7f030000
 			public const int Main = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int ResultItem = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int Settings = 2130903042;
 			
 			static Layout()
 			{

@@ -2,4 +2,11 @@
 <resources>
     <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">FarApp</string>
+  <string-array name ="Categories">
+    <item>Автомобили</item>
+    <item>Продажа квартир</item>
+    <item>Аренда квартир</item>
+    <item>Бесплатное</item>
+    <item>Вакансии</item>
+  </string-array>
 </resources>
