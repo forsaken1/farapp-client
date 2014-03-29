@@ -35,7 +35,7 @@ namespace FarApp
         {            
             var detailsFragment = new ResultDetails(adapter[e.Position]);
             this.FragmentManager.BeginTransaction().
-                Replace(Resource.Id.Main_Layout, detailsFragment)
+                Replace(Resource.Id.Main_Layout, detailsFragment,"details")
                 .AddToBackStack("details")
                 .Commit();
         }

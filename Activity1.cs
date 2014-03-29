@@ -60,6 +60,15 @@ namespace FarApp
             }
             return base.OnOptionsItemSelected(item);
         }
+        protected override void OnActivityResult(int requestCode, Android.App.Result resultCode, Intent data)
+        {
+            if (resultCode == Android.App.Result.Ok && requestCode == 101)
+            {
+                var f = FragmentManager.FindFragmentByTag("details");
+                f.OnActivityResult(requestCode, resultCode, data);
+            }
+            base.OnActivityResult(requestCode, resultCode, data);
+        }
     }
 }
 

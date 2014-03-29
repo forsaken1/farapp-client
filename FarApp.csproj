@@ -182,6 +182,7 @@
     <AndroidResource Include="Resources\Drawable\no_image_placeholder.png" />
     <AndroidResource Include="Resources\Anim\slide_in_right.xml" />
     <AndroidResource Include="Resources\Anim\slide_out_left.xml" />
+    <AndroidResource Include="Resources\Drawable\orange-arrow.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="GCMClient">

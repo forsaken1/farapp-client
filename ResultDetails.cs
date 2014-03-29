@@ -22,10 +22,16 @@ namespace FarApp
         public ResultDetails(Result result)
         {
             this.result = result;
+            images = new List<string>();
         }
         public override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);            
+            var intent = new Intent(this.Activity,typeof(ImageService));
+            var pi = this.Activity.CreatePendingResult(101,new Intent(),PendingIntentFlags.UpdateCurrent);
+            intent.PutExtra("pi",pi);
+            intent.PutStringArrayListExtra("urls",result.Photos);
+            this.Activity.StartService(intent);
+            base.OnCreate(savedInstanceState);
         }
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -104,6 +110,19 @@ namespace FarApp
             _image.LayoutParameters = new ImageSwitcher.LayoutParams(ViewGroup.LayoutParams.MatchParent, 
                 ViewGroup.LayoutParams.MatchParent);
             return _image;
+        }
+
+        public override void OnActivityResult(int requestCode, Android.App.Result resultCode, Intent data)
+        {
+            if (requestCode == 101 && resultCode == Android.App.Result.Ok)
+            {
+                if (images.Count == 0)
+                {
+                    switcher.SetImageURI(Android.Net.Uri.Parse(data.GetStringExtra("imagePath")));
+                }
+                images.Add(data.GetStringExtra("imagePath"));                
+            }
+            base.OnActivityResult(requestCode, resultCode, data);
         }
     }
 }

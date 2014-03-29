@@ -40,7 +40,7 @@ namespace FarApp
                 catch (Exception e)
                 {
                     var a = e.StackTrace;
-           //         Console.WriteLine(e.StackTrace);
+                    Console.WriteLine(e.StackTrace);
                 }
                 return imagePath;
             }
@@ -59,7 +59,13 @@ namespace FarApp
                     Title = "title",
                     Price = 12000,
                     Details = " long sdfsldk lrnejgnlsngsdn ,n sn  devices",
-                    MainPhotoUrl = "http://stat20.privet.ru/lr/0d14ce807f3d2da00814601cd8fec104"
+                    MainPhotoUrl = "http://static.baza.farpost.ru/v/1395901688037_bulletin.html",
+                    Photos = new List<string>
+                    {
+                        "http://static.baza.farpost.ru/v/1395901656018_bulletin",
+                        "http://static.baza.farpost.ru/v/1395901676380_bulletin",
+                        "http://static.baza.farpost.ru/v/1395901688037_bulletin"
+                    }
                 },
                 new Result
                 {
