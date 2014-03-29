@@ -6,16 +6,18 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-
+using Android.Content.PM;
 using Gcm.Client;
 
 namespace FarApp
 {
-    [Activity(Label = "FarApp", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "FarApp", MainLauncher = true, Icon = "@drawable/icon",
+        ConfigurationChanges = ConfigChanges.KeyboardHidden|ConfigChanges.Orientation,
+        ScreenOrientation = ScreenOrientation.Portrait)]
     public class Activity1 : Activity
     {
         int count = 1;
-
+        
         protected override void OnCreate(Bundle bundle)
         {
             const string id = "amazing-badge-534";

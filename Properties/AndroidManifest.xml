@@ -9,5 +9,5 @@
   <permission android:name="com.example.gcm.permission.C2D_MESSAGE"
       android:protectionLevel="signature" />
   <uses-permission android:name="com.example.gcm.permission.C2D_MESSAGE" />-->
-	<application android:label="FarApp"></application>
+	<application android:theme="@style/Theme.Orange" android:label="FarApp"></application>
 </manifest>
