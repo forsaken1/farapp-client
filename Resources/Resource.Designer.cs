@@ -173,23 +173,26 @@ namespace FarApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f070000
-			public const int Main_Layout = 2131165184;
+			// aapt resource value: 0x7f080000
+			public const int Main_Layout = 2131230720;
 			
-			// aapt resource value: 0x7f070001
-			public const int MyButton = 2131165185;
+			// aapt resource value: 0x7f080001
+			public const int MyButton = 2131230721;
 			
-			// aapt resource value: 0x7f070003
-			public const int resultItem_details = 2131165187;
+			// aapt resource value: 0x7f080003
+			public const int resultItem_details = 2131230723;
 			
-			// aapt resource value: 0x7f070004
-			public const int resultItem_price = 2131165188;
+			// aapt resource value: 0x7f080004
+			public const int resultItem_price = 2131230724;
 			
-			// aapt resource value: 0x7f070002
-			public const int resultItem_title = 2131165186;
+			// aapt resource value: 0x7f080002
+			public const int resultItem_title = 2131230722;
 			
-			// aapt resource value: 0x7f070005
-			public const int settings_list = 2131165189;
+			// aapt resource value: 0x7f080006
+			public const int settingsMenu = 2131230726;
+			
+			// aapt resource value: 0x7f080005
+			public const int settings_list = 2131230725;
 			
 			static Id()
 			{
@@ -219,6 +222,22 @@ namespace FarApp
 			}
 			
 			private Layout()
+			{
+			}
+		}
+		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f070000
+			public const int MainMenu = 2131165184;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
 			{
 			}
 		}

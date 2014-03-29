@@ -22,18 +22,34 @@ namespace FarApp
         {
             const string id = "amazing-badge-534";
             const string project_number = "1078115685642";
-
+            
             base.OnCreate(bundle);
 
             GcmClient.CheckDevice(this);
             GcmClient.CheckManifest(this);
 
             SetContentView(Resource.Layout.Main);
-            this.FragmentManager.BeginTransaction().Replace(Resource.Id.Main_Layout, new Settings()).Commit();
-
+            
             Button button = FindViewById<Button>(Resource.Id.MyButton);
 
             button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.MainMenu, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Resource.Id.settingsMenu)
+            {
+                this.FragmentManager.BeginTransaction()
+                    .Replace(Resource.Id.Main_Layout, new Settings())
+                    .AddToBackStack("settings")
+                    .Commit(); 
+            }
+            return base.OnOptionsItemSelected(item);
         }
     }
 }
