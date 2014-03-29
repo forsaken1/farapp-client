@@ -20,19 +20,13 @@ namespace FarApp
         
         protected override void OnCreate(Bundle bundle)
         {
-            const string id = "amazing-badge-534";
-            const string project_number = "1078115685642";
-            
             base.OnCreate(bundle);
 
             GcmClient.CheckDevice(this);
             GcmClient.CheckManifest(this);
 
             SetContentView(Resource.Layout.Main);
-            
-            Button button = FindViewById<Button>(Resource.Id.MyButton);
-
-            button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+            this.FragmentManager.BeginTransaction().Replace(Resource.Id.Main_Layout, new ListResults()).Commit();
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -47,7 +41,7 @@ namespace FarApp
                 this.FragmentManager.BeginTransaction()
                     .Replace(Resource.Id.Main_Layout, new Settings())
                     .AddToBackStack("settings")
-                    .Commit(); 
+                    .Commit();
             }
             return base.OnOptionsItemSelected(item);
         }

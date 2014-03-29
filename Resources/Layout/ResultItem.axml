@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
     <ImageView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:id="@+id/resultItem_image"
+        android:layout_weight="3" />
     <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
+            android:layout_margin="4dp"
             android:id="@+id/resultItem_title" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
+            android:layout_margin="4dp"
+            android:layout_below="@id/resultItem_title"
             android:id="@+id/resultItem_details" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
+            android:gravity="right"
+            android:layout_margin="4dp"
             android:textColor="#ffa500"
+            android:layout_below="@id/resultItem_details"
             android:id="@+id/resultItem_price" />
     </RelativeLayout>
 </LinearLayout>

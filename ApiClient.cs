@@ -18,7 +18,23 @@ namespace FarApp
             deviceUID = UUID; 
         }
         public List<Result> GetNewAds()
-        {            
+        {
+            return new List<Result>
+            {
+                new Result
+                {
+                    Title = "title",
+                    Price = 12000,
+                    Details = " long sdfsldk lrnejgnlsngsdn ,n sn  devices"
+                },
+                new Result
+                {
+                    Title = "title2",
+                    Price = 16700,
+                    Details = " short dn ,n sn  devices"
+                },
+            };
+
             const string URL = "";
             var responce = client.GetAsync(URL).Result;
             if (responce.IsSuccessStatusCode)

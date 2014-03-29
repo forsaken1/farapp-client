@@ -18,15 +18,21 @@ namespace FarApp
         Activity context;
         
         public ResultsAdapter(Activity context)
-        {
+        {            
             items = new List<Result>();
             this.context = context; 
         }
         public void AddItems(IEnumerable<Result> newItems)
         {
-            items.Concat(newItems);
+            items.AddRange(newItems);
+            
+            this.NotifyDataSetChanged();
         }
-
+        public void Clear()
+        {
+            items.Clear();
+            this.NotifyDataSetChanged();
+        }
         public override long GetItemId(int position)
         {
             return position;
@@ -46,6 +52,17 @@ namespace FarApp
             if (view == null)
             {
                 view = context.LayoutInflater.Inflate(Resource.Layout.ResultItem, null); 
+            }
+            var title = view.FindViewById<TextView>(Resource.Id.resultItem_title);
+            var details = view.FindViewById<TextView>(Resource.Id.resultItem_details);
+            var price = view.FindViewById<TextView>(Resource.Id.resultItem_price);
+            var imageView = view.FindViewById<ImageView>(Resource.Id.resultItem_image);
+            title.Text = items[position].Title;
+            details.Text = items[position].Details;
+            price.Text = items[position].Price.ToString() + " ð.";
+            if (items[position].MainPhotoUrl == null)
+            {
+                imageView.SetImageResource(Resource.Drawable.no_image_placeholder);
             }
             return view;
         }
