@@ -34,7 +34,7 @@ namespace FarApp
             if (!GcmClient.IsRegistered(this))
             {
                 GcmClient.Register(this, GcmBroadcastReceiver.SENDER_IDS);
-                //GcmClient.SetRegisteredOnServer(this, true);
+                GcmClient.SetRegisteredOnServer(this, true);
             }            
         }
 

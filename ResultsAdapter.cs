@@ -31,7 +31,7 @@ namespace FarApp
             items.AddRange(newItems);
             Task.Factory.StartNew(() =>
                 {
-                    foreach (var item in newItems.Where(i=>i.MainPhotoUrl != null))
+                    foreach (var item in newItems.Where(i=>i.MainPhotoUrl != null && i.MainPhotoUrl != ""))
                     {
                         var path = client.DownloadImage(directoryPath, item.MainPhotoUrl);
                         item.MainImagePath = path;
@@ -71,7 +71,7 @@ namespace FarApp
             var imageView = view.FindViewById<ImageView>(Resource.Id.resultItem_image);
             title.Text = items[position].Title;
             details.Text = items[position].Details;
-            price.Text = items[position].Price.ToString();
+            price.SetText(Android.Text.Html.FromHtml(items[position].Price.ToString()),TextView.BufferType.Spannable);
             if (items[position].MainImagePath == null)
             {
                 imageView.SetImageResource(Resource.Drawable.no_image_placeholder);

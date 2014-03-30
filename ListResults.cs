@@ -74,18 +74,24 @@ namespace FarApp
             }
             return base.OnOptionsItemSelected(item);
         }
+        bool isRefreshingNow;
         List<Result> currentItems;
         void Refresh()
         {
+            if (isRefreshingNow)
+                return;
+            isRefreshingNow = true;
             System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
                     if (Activity1.Client.RegisterID != "")
                     {
-                        var results = Activity1.Client.GetNewAds(GetTime());
+                        var falseTime = "2014-03-29 10:00:00";
+                        var results = Activity1.Client.GetNewAds(falseTime/*GetTime()*/);
                         if (this.Activity != null)
                         {
                             this.Activity.RunOnUiThread(() =>
                                 {
+                                    
                                     if (results.Item1.Count == 0)
                                     {
                                         Toast.MakeText(this.Activity, "Новых объявлений не найдено", ToastLength.Long).Show();
@@ -94,12 +100,14 @@ namespace FarApp
                                     {
                                         adapter.Clear();
                                         currentItems = results.Item1;
-                                        adapter.AddItems(results.Item1);                                        
-                                    }
-                                    SetTime(results.Item2);
+                                        adapter.AddItems(results.Item1);
+                                        SetTime(results.Item2);
+                                    }                                   
+                                    isRefreshingNow = false;
                                 });
                         }
                     }
+                    isRefreshingNow = false;
                 });
         }
         public override void OnActivityResult(int requestCode, Android.App.Result resultCode, Intent data)
@@ -114,19 +122,6 @@ namespace FarApp
                 }
             }
             base.OnActivityResult(requestCode, resultCode, data);
-        }
-
-        public override void OnDestroyView()
-        {
-            base.OnDestroyView();
-        }
-        public override void OnDestroy()
-        {
-            base.OnDestroy();
-        }
-        public override void OnDetach()
-        {
-            base.OnDetach();
         }
     }
 }

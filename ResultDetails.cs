@@ -19,6 +19,7 @@ namespace FarApp
         ImageSwitcher switcher;
         List<string> images;
         Result result;
+        PostInfo postInfo;
         ProgressBar progress;
         public ResultDetails(Result result)
         {
@@ -27,13 +28,42 @@ namespace FarApp
         }
         public override void OnCreate(Bundle savedInstanceState)
         {
-            var intent = new Intent(this.Activity,typeof(ImageService));
-            var pi = this.Activity.CreatePendingResult(101,new Intent(),PendingIntentFlags.UpdateCurrent);
-            intent.PutExtra("pi",pi);
-            intent.PutStringArrayListExtra("urls",result.Photos);
-            this.Activity.StartService(intent);
+            if (postInfo == null)
+            {
+                System.Threading.Tasks.Task.Factory.StartNew(() =>
+                    {
+                       var info = Activity1.Client.GetPostInfo(result.Link);
+                       this.Activity.RunOnUiThread(() =>
+                           {
+                               postInfo = info;
+                               RefreshPostInfo();
+                           });
+                    });
+            }
             base.OnCreate(savedInstanceState);
         }
+
+        void RefreshPostInfo()
+        {            
+            StartImageService();
+            if (View != null)
+            {
+                var allContacts = postInfo.PhoneNumbers;
+                allContacts.AddRange(postInfo.EMails);
+                View.FindViewById<TextView>(Resource.Id.details_contacts).Text = 
+                    String.Join(System.Environment.NewLine,allContacts);
+            }
+        }
+
+        void StartImageService()
+        {
+            var intent = new Intent(this.Activity, typeof(ImageService));
+            var pi = this.Activity.CreatePendingResult(101, new Intent(), PendingIntentFlags.UpdateCurrent);
+            intent.PutExtra("pi", pi);
+            intent.PutStringArrayListExtra("urls", postInfo.ImageUrls);
+            this.Activity.StartService(intent); 
+        }
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate(Resource.Layout.ResultDetails, null);
@@ -75,10 +105,10 @@ namespace FarApp
             var description  = view.FindViewById<TextView>(Resource.Id.details_description);
             var link = view.FindViewById<TextView>(Resource.Id.details_link);
             title.Text = result.Title;
-            price.Text = result.Price + " ð.";
+            price.SetText(Android.Text.Html.FromHtml(result.Price),TextView.BufferType.Spannable);
             parameters.Text = result.Details;
             description.Text = result.Text;
-            link.Text = result.Link;
+            link.Text = "http://vladivostok.farpost.ru/" + result.Link + ".html";
             return view;
         }
         int switcherPosition = 0;

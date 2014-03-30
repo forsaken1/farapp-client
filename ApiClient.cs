@@ -169,11 +169,11 @@ namespace FarApp
                     result.Details = item["annotation"].ToString();
                     result.Price = item["price"].ToString();
                     result.Title = item["subject"].ToString();
+                    result.MainPhotoUrl = item["img"].ToString();
                     results.Add(result);
                 }
                 return new Tuple<List<Result>, string>(results, jData["time"].ToString());
             }           
-                      
         
         string GetJsonRegisterID(string time)
         {
@@ -182,5 +182,48 @@ namespace FarApp
             jRegisterId.Add(new JProperty("time", time));
             return jRegisterId.ToString();
         }
+
+        public PostInfo GetPostInfo(string postLink)
+        {            
+            const string URL = "http://farapp.herokuapp.com/getPostInfo?";
+            var result = client.GetAsync(URL + "post=" + postLink).Result;
+            if (result.IsSuccessStatusCode)
+            {
+                var info = new PostInfo();
+                var jInfo = JObject.Parse(result.Content.ReadAsStringAsync().Result);
+                var jImages = jInfo["images"] as JArray;
+                foreach (var j in jImages)
+                {
+                    info.ImageUrls.Add(j.ToString()); 
+                }
+                var jPhones = jInfo["phones"] as JArray;
+                foreach (var j in jPhones)
+                {
+                    info.PhoneNumbers.Add(j.ToString());
+                }
+                var jMails = jInfo["emails"] as JArray;
+                foreach (var j in jMails)
+                {
+                    info.EMails.Add(j.ToString());
+                }
+                return info;
+            }
+            else
+            {
+                return new PostInfo();
+            }
+        }
+    }
+    public class PostInfo
+    {
+        public PostInfo()
+        {
+            PhoneNumbers = new List<string>();
+            EMails = new List<string>();
+            ImageUrls = new List<string>();
+        }
+        public List<string> PhoneNumbers { get; set; }
+        public List<string> EMails { get; set; }
+        public List<string> ImageUrls { get; set; }
     }
 }
