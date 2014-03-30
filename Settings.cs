@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace FarApp
 {
-    public class Settings : Fragment
+    public class Settings : DialogFragment
     {
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -37,19 +37,13 @@ namespace FarApp
                 {
                     listView.SetItemChecked(i, true);
                 }
-            }            
-            
+            }
+            var buttonOk = view.FindViewById<Button>(Resource.Id.settings_ok);
+            buttonOk.Click += buttonOk_Click;
             return view;
         }
 
-        string[] GetSelectedCategories()
-        {
-            var preferences = this.Activity.GetSharedPreferences("prefs", FileCreationMode.Private);
-            var selectedCategories = preferences.GetStringSet("categories", new List<string>());
-            return selectedCategories.ToArray();
-        }
-
-        public override void OnPause()
+        void buttonOk_Click(object sender, EventArgs e)
         {
             var preferences = this.Activity.GetSharedPreferences("prefs", FileCreationMode.Private);
             var editor = preferences.Edit();
@@ -61,16 +55,23 @@ namespace FarApp
                 if (listView.IsItemChecked(i))
                 {
                     selectedCategories.Add(categories[i]);
-                    indexes.Add(i+1);
+                    indexes.Add(i + 1);
                 }
             }
-            editor.PutStringSet("categories",selectedCategories);
+            editor.PutStringSet("categories", selectedCategories);
             editor.Commit();
             System.Threading.Tasks.Task.Factory.StartNew(() =>
-                {
-                    Activity1.Client.Register(indexes.ToArray()); 
-                });
-            base.OnPause();
-        }            
+            {
+                Activity1.Client.Register(indexes.ToArray());
+            });
+            this.Dismiss();
+        }
+
+        string[] GetSelectedCategories()
+        {
+            var preferences = this.Activity.GetSharedPreferences("prefs", FileCreationMode.Private);
+            var selectedCategories = preferences.GetStringSet("categories", new List<string>());
+            return selectedCategories.ToArray();
+        }    
     }
 }

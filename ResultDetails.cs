@@ -73,10 +73,12 @@ namespace FarApp
             var price = view.FindViewById<TextView>(Resource.Id.details_price);
             var parameters = view.FindViewById<TextView>(Resource.Id.details_parameters);
             var description  = view.FindViewById<TextView>(Resource.Id.details_description);
+            var link = view.FindViewById<TextView>(Resource.Id.details_link);
             title.Text = result.Title;
             price.Text = result.Price + " ð.";
             parameters.Text = result.Details;
             description.Text = result.Text;
+            link.Text = result.Link;
             return view;
         }
         int switcherPosition = 0;

@@ -6,5 +6,10 @@
     <ListView
         android:id="@+id/settings_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Сохранить настройки"
+        android:id="@+id/settings_ok" />
 </LinearLayout>

@@ -55,5 +55,11 @@
             android:autoLink="all"
             android:lineSpacingExtra="8sp"
             android:text="+79247398153\n+79242386413" />
+        <TextView
+            android:padding="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="all"
+            android:id="@+id/details_link" />
     </LinearLayout>
 </ScrollView>

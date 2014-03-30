@@ -148,33 +148,33 @@ namespace FarApp
         Tuple<List<Result>,string> BuildResults(string json)
         {
             var results = new List<Result>();
-            var jData = JObject.Parse(json);
-            var items = jData["items"] as JArray;
-            foreach (var item in items)
-            {
-                var result = new Result();
-                result.Parameters = new Dictionary<string,string>();
-                var category = item["category_id"].ToString();
-                foreach (var field in fields[category])
+            var jData = JObject.Parse(json);            
+                var items = jData["items"] as JArray;
+                foreach (var item in items)
                 {
-                    try
+                    var result = new Result();
+                    result.Parameters = new Dictionary<string, string>();
+                    var category = item["category_id"].ToString();
+                    foreach (var field in fields[category])
                     {
-                        result.Parameters.Add(field, item[field].ToString());
+                        try
+                        {
+                            result.Parameters.Add(field, item[field].ToString());
+                        }
+                        catch (Exception)
+                        { }
                     }
-                    catch (Exception)
-                    {
- 
-                    }
+                    result.Key = item["key"].ToString();
+                    result.Link = item["link"].ToString();
+                    result.Details = item["annotation"].ToString();
+                    result.Price = item["price"].ToString();
+                    result.Title = item["subject"].ToString();
+                    results.Add(result);
                 }
-                result.Key = item["key"].ToString();
-                result.Link = item["link"].ToString();
-                result.Details = item["annotation"].ToString();
-                result.Price = item["price"].ToString();
-                result.Title = item["subject"].ToString();
-                results.Add(result);
-            }
-            return new Tuple<List<Result>,string>(results,jData["time"].ToString());
-        }
+                return new Tuple<List<Result>, string>(results, jData["time"].ToString());
+            }           
+                      
+        
         string GetJsonRegisterID(string time)
         {
             var jRegisterId = new JObject();

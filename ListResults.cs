@@ -24,14 +24,13 @@ namespace FarApp
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             adapter = new ResultsAdapter(this.Activity,System.IO.Path.Combine(this.Activity.FilesDir.AbsolutePath,"Images"));
-            var results = Activity1.Client.GetNewAds(GetTime());
+           
             ListAdapter = adapter;
             
             ListView.ItemClick += ListView_ItemSelected;
             ListView.Divider = new ColorDrawable(Android.Graphics.Color.Orange);
             ListView.DividerHeight = 1;
-            adapter.AddItems(results.Item1);
-            SetTime(results.Item2);
+            this.SetHasOptionsMenu(true);
             base.OnViewCreated(view, savedInstanceState);
         }
 
@@ -56,6 +55,38 @@ namespace FarApp
                 .Commit();
         }
 
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            inflater.Inflate(Resource.Menu.ListMenu,menu);
+            base.OnCreateOptionsMenu(menu, inflater);
+        }
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Resource.Id.listMenu_refresh)
+            {
+                Refresh();
+                return true;
+            }
+            return base.OnOptionsItemSelected(item);
+        }
+        void Refresh()
+        {
+            System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    if (Activity1.Client.RegisterID != "")
+                    {
+                        var results = Activity1.Client.GetNewAds(GetTime());
+                        if (this.Activity != null)
+                        {
+                            this.Activity.RunOnUiThread(() =>
+                                {
+                                    adapter.AddItems(results.Item1);
+                                    SetTime(results.Item2);
+                                });
+                        }
+                    }
+                });
+        }
         public override void OnActivityResult(int requestCode, Android.App.Result resultCode, Intent data)
         {
             if (requestCode == 100 && resultCode == Android.App.Result.Ok)

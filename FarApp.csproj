@@ -71,6 +71,7 @@
     <Compile Include="ResultDetails.cs" />
     <Compile Include="ResultsAdapter.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="SettingsDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -186,11 +187,17 @@
     <AndroidResource Include="Resources\Anim\slide_out_left.xml" />
     <AndroidResource Include="Resources\Drawable\orange_arrow.png" />
     <AndroidResource Include="Resources\Drawable\progress.xml" />
-    <AndroidResource Include="Resources\Values\Colors.xml" />
+    <AndroidResource Include="Resources\Values\Colors.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\Drawable\resultItemBackground.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_action_settings.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_action_settings.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_settings.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_refresh.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_refresh.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_refresh.png" />
+    <AndroidResource Include="Resources\Menu\ListMenu.xml" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="GCMClient">

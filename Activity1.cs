@@ -31,10 +31,10 @@ namespace FarApp
             {
                 apiClient.RegisterID = prefs.GetString("id", "");
             }
-            if (!GcmClient.IsRegisteredOnServer(this) || GcmClient.IsRegistered(this))
+            if (!GcmClient.IsRegistered(this))
             {
                 GcmClient.Register(this, GcmBroadcastReceiver.SENDER_IDS);
-                GcmClient.SetRegisteredOnServer(this, true);
+                //GcmClient.SetRegisteredOnServer(this, true);
             }            
         }
 
@@ -44,6 +44,11 @@ namespace FarApp
             Init();           
             
             SetContentView(Resource.Layout.Main);
+            if (IsFirstLaunchOnDevice())
+            {
+                var dialog = new Settings();
+                dialog.Show(this.FragmentManager, "settings");
+            }
             this.FragmentManager.BeginTransaction().Replace(Resource.Id.Main_Layout, new ListResults()).Commit();
         }
 
@@ -56,10 +61,9 @@ namespace FarApp
         {
             if (item.ItemId == Resource.Id.settingsMenu)
             {
-                this.FragmentManager.BeginTransaction()
-                    .Replace(Resource.Id.Main_Layout, new Settings())
-                    .AddToBackStack("settings")
-                    .Commit();
+                var dialog = new Settings();
+                dialog.Show(this.FragmentManager, "settings");
+                return true;
             }
             return base.OnOptionsItemSelected(item);
         }
@@ -82,6 +86,15 @@ namespace FarApp
             {
                 return apiClient;
             }
+        }
+        bool IsFirstLaunchOnDevice()
+        {
+            var prefs = GetSharedPreferences("prefs", FileCreationMode.Private);
+            var isFirstLaunch = prefs.GetBoolean("isFirstLaunch", true);
+            var editor = prefs.Edit();
+            editor.PutBoolean("isFirstLaunch", false);
+            editor.Commit();
+            return isFirstLaunch;
         }
     }
 }
