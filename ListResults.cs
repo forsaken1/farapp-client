@@ -24,14 +24,27 @@ namespace FarApp
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             adapter = new ResultsAdapter(this.Activity,System.IO.Path.Combine(this.Activity.FilesDir.AbsolutePath,"Images"));
-            var results = Activity1.Client.GetNewAds("2014-01-01 10:00:00");
+            var results = Activity1.Client.GetNewAds(GetTime());
             ListAdapter = adapter;
             
             ListView.ItemClick += ListView_ItemSelected;
             ListView.Divider = new ColorDrawable(Android.Graphics.Color.Orange);
             ListView.DividerHeight = 1;
-            adapter.AddItems(results);
+            adapter.AddItems(results.Item1);
+            SetTime(results.Item2);
             base.OnViewCreated(view, savedInstanceState);
+        }
+
+        string GetTime()
+        {
+            var prefs = Activity.GetSharedPreferences("prefs", FileCreationMode.Private);
+            return prefs.GetString("time", "2014-03-29 10:00:00"); 
+        }
+        void SetTime(string time)
+        {
+            var edit = Activity.GetSharedPreferences("prefs", FileCreationMode.Private).Edit();
+            edit.PutString("time", time);
+            edit.Commit();
         }
 
         void ListView_ItemSelected(object sender, AdapterView.ItemClickEventArgs e)

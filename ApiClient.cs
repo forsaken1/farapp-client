@@ -113,7 +113,7 @@ namespace FarApp
             }    
         }
 
-        public List<Result> GetNewAds(string time)
+        public Tuple<List<Result>,string> GetNewAds(string time)
         {           
             var requestContent = new StringContent(GetJsonRegisterID(time),Encoding.UTF8,"application/json");
             var sss = GetJsonRegisterID(time);
@@ -126,7 +126,7 @@ namespace FarApp
             else
             {
                 var error = responce.Content.ReadAsStringAsync().Result;
-                return new List<Result>();
+                return new Tuple<List<Result>,string>(new List<Result>(),"2014-03-29 00:00:00");
             }
         }
 
@@ -145,7 +145,7 @@ namespace FarApp
             return responce.IsSuccessStatusCode;
         }
 
-        List<Result> BuildResults(string json)
+        Tuple<List<Result>,string> BuildResults(string json)
         {
             var results = new List<Result>();
             var jData = JObject.Parse(json);
@@ -170,9 +170,10 @@ namespace FarApp
                 result.Link = item["link"].ToString();
                 result.Details = item["annotation"].ToString();
                 result.Price = item["price"].ToString();
+                result.Title = item["subject"].ToString();
                 results.Add(result);
             }
-            return results;
+            return new Tuple<List<Result>,string>(results,jData["time"].ToString());
         }
         string GetJsonRegisterID(string time)
         {

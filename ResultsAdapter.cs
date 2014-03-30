@@ -71,7 +71,7 @@ namespace FarApp
             var imageView = view.FindViewById<ImageView>(Resource.Id.resultItem_image);
             title.Text = items[position].Title;
             details.Text = items[position].Details;
-            price.Text = items[position].Price.ToString() + " ð.";
+            price.Text = items[position].Price.ToString();
             if (items[position].MainImagePath == null)
             {
                 imageView.SetImageResource(Resource.Drawable.no_image_placeholder);
