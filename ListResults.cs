@@ -86,7 +86,7 @@ namespace FarApp
                     if (Activity1.Client.RegisterID != "")
                     {
                         var falseTime = "2014-03-29 10:00:00";
-                        var results = Activity1.Client.GetNewAds(falseTime/*GetTime()*/);
+                        var results = Activity1.Client.GetNewAds(/*falseTime*/GetTime());
                         if (this.Activity != null)
                         {
                             this.Activity.RunOnUiThread(() =>
