@@ -14,14 +14,16 @@ namespace FarApp
 {
     public class Result
     {
-        public string Title { get; set; }
-        public DateTime Date { get; set; }
+        public string Title { get; set; }        
+        public string Key { get; set; }
+        public string Link { get; set; }
         public List<string> Photos { get; set; }
         public string Category { get; set; }
+        public Dictionary<string,string> Parameters { get; set; }
         public string Text { get; set; }
         public string MainPhotoUrl { get; set; }
         public string Details { get; set; }
-        public int Price { get; set; }
+        public string Price { get; set; }
         public string MainImagePath { get; set; }
     }
 }

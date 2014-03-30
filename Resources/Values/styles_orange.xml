@@ -29,8 +29,6 @@
         <item name="android:actionModeBackground">@drawable/cab_background_top_orange</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_orange</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Orange</item>
-        
-        
     </style>
 
     <style name="ActionBar.Solid.Orange" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
@@ -38,9 +36,13 @@
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_orange</item>
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_orange</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Orange</item>
+        <item name="android:titleTextStyle">@style/TitleColor</item>
     </style>
-
-    <style name="ActionBar.Transparent.Orange" parent="@android:style/Widget.Holo.Light.ActionBar">
+  <style name="TitleColor" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
+    <item name="android:textColor">@color/white</item>
+  </style>
+  
+  <style name="ActionBar.Transparent.Orange" parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:background">@drawable/ab_transparent_orange</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Orange</item>
     </style>

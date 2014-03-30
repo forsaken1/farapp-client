@@ -184,6 +184,10 @@
     <AndroidResource Include="Resources\Drawable\orange_arrow.png" />
     <AndroidResource Include="Resources\Drawable\progress.xml" />
     <AndroidResource Include="Resources\Values\Colors.xml" />
+    <AndroidResource Include="Resources\Drawable\resultItemBackground.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_settings.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_settings.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_action_settings.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="GCMClient">

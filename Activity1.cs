@@ -26,17 +26,23 @@ namespace FarApp
             }
             GcmClient.CheckDevice(this);
             GcmClient.CheckManifest(this);
-            if (!GcmClient.IsRegisteredOnServer(this))
+            var prefs = GetSharedPreferences("registration", FileCreationMode.Private);
+            if (prefs.Contains("id"))
+            {
+                apiClient.RegisterID = prefs.GetString("id", "");
+            }
+            if (!GcmClient.IsRegisteredOnServer(this) || GcmClient.IsRegistered(this))
             {
                 GcmClient.Register(this, GcmBroadcastReceiver.SENDER_IDS);
-            }
-            apiClient.RegisterID = GcmClient.GetRegistrationId(this);
+                GcmClient.SetRegisteredOnServer(this, true);
+            }            
         }
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             Init();           
+            
             SetContentView(Resource.Layout.Main);
             this.FragmentManager.BeginTransaction().Replace(Resource.Id.Main_Layout, new ListResults()).Commit();
         }
@@ -62,7 +68,10 @@ namespace FarApp
             if (resultCode == Android.App.Result.Ok && requestCode == 101)
             {
                 var f = FragmentManager.FindFragmentByTag("details");
-                f.OnActivityResult(requestCode, resultCode, data);
+                if (f != null)
+                { 
+                    f.OnActivityResult(requestCode, resultCode, data);
+                }
             }
             base.OnActivityResult(requestCode, resultCode, data);
         }

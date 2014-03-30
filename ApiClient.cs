@@ -22,14 +22,63 @@ namespace FarApp
             {
                 registerID = value;
             }
-        }        
-
+        }
+        Dictionary<string, List<string>> fields = new Dictionary<string, List<string>>();
         HttpClient client;
         public ApiClient(string registerID = "")
         {
             client = new HttpClient();
             client.Timeout = new TimeSpan(0, 0, 30);
             this.registerID = registerID;
+        }
+
+        void InitFields()
+        {
+            fields.Add("1", new List<string> 
+            { 
+                "price","model",
+"year",
+"displacement",
+"transmission",
+"drive",
+"fuel",
+"hasDocuments",
+"hasRussianMileage",
+"isAfterCrash",
+"condition",
+"guarantee",
+"description",
+"author",
+            });
+            fields.Add("2", new List<string> 
+            {
+                "subject" ,
+"price",
+"district",
+"street",
+"flatType",
+"area",
+"text" ,
+            });
+            fields.Add("3", new List<string>
+                {
+                    "payment",
+"paymentform",
+"firm",
+"branch",
+"vacancy",
+"employment",
+"obligation",
+"description",
+"education",
+"experience",
+"author",
+                });
+            fields.Add("4", new List<string>
+                {
+                    "subject",
+"text",
+                });
         }
 
         public string DownloadImage(string directoryPath, string url)
@@ -63,32 +112,9 @@ namespace FarApp
             }    
         }
 
-        public List<Result> GetNewAds()
-        {
-            return new List<Result>
-            {
-                new Result
-                {
-                    Title = "title",
-                    Price = 12000,
-                    Details = " long sdfsldk lrnejgnlsngsdn ,n sn  devices",
-                    MainPhotoUrl = "http://static.baza.farpost.ru/v/1395901688037_bulletin.html",
-                    Photos = new List<string>
-                    {
-                        "http://static.baza.farpost.ru/v/1395901656018_bulletin",
-                        "http://static.baza.farpost.ru/v/1395901676380_bulletin",
-                        "http://static.baza.farpost.ru/v/1395901688037_bulletin"
-                    }
-                },
-                new Result
-                {
-                    Title = "title2",
-                    Price = 16700,
-                    Details = " short dn ,n sn  devices",
-                    MainPhotoUrl = "http://stat20.privet.ru/lr/0d14ce807f3d2da00814601cd8fec104"
-                },
-            };
-            var requestContent = new StringContent(GetJsonRegisterID());                     
+        public List<Result> GetNewAds(string time)
+        {           
+            var requestContent = new StringContent(GetJsonRegisterID(time),Encoding.UTF8,"application/json");                     
             var responce = client.PostAsync(MAIN_URL + "/get",requestContent).Result;
             if (responce.IsSuccessStatusCode)
             {
@@ -97,30 +123,52 @@ namespace FarApp
             }
             else
             {
+                var error = responce.Content.ReadAsStringAsync().Result;
                 return new List<Result>();
             }
         }
 
         public bool Register(int[] categoryIDs)
         {
+            if (String.IsNullOrEmpty(registerID))
+                return false;
             var jContent = new JObject();
             jContent.Add("register_id",registerID);
             jContent.Add("category",new JArray(categoryIDs));
-            var content = new StringContent(jContent.ToString());
+            var content = new StringContent(jContent.ToString(Newtonsoft.Json.Formatting.None),Encoding.UTF8,"application/json");            
+            var json = jContent.ToString(Newtonsoft.Json.Formatting.None);
             var responce = client.PostAsync(MAIN_URL + "/register",content).Result;
+            var error = responce.Content.ReadAsStringAsync().Result;
+            
             return responce.IsSuccessStatusCode;
         }
 
         List<Result> BuildResults(string json)
         {
             var results = new List<Result>();
-            //TODO: Parsing
+            var jData = JObject.Parse(json);
+            var items = jData["items"] as JArray;
+            foreach (var item in items)
+            {
+                var result = new Result();
+                result.Parameters = new Dictionary<string,string>();
+                var category = item["category_id"].ToString();
+                foreach (var field in fields[category])
+                {
+                    result.Parameters.Add(field, item[field].ToString());
+                }
+                result.Key = item["key"].ToString();
+                result.Link = item["link"].ToString();
+                result.Details = item["annotation"].ToString();
+                result.Price = item["price"].ToString();
+            }
             return results;
         }
-        string GetJsonRegisterID()
+        string GetJsonRegisterID(string time)
         {
             var jRegisterId = new JObject();
             jRegisterId.Add(new JProperty("registed_id", registerID));
+            jRegisterId.Add(new JProperty("time", time));
             return jRegisterId.ToString();
         }
     }

@@ -61,7 +61,7 @@ namespace FarApp
                 if (listView.IsItemChecked(i))
                 {
                     selectedCategories.Add(categories[i]);
-                    indexes.Add(i);
+                    indexes.Add(i+1);
                 }
             }
             editor.PutStringSet("categories",selectedCategories);

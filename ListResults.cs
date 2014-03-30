@@ -24,7 +24,7 @@ namespace FarApp
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             adapter = new ResultsAdapter(this.Activity,System.IO.Path.Combine(this.Activity.FilesDir.AbsolutePath,"Images"));
-            var results = new ApiClient("12313123").GetNewAds();
+            var results = new ApiClient("12313123").GetNewAds("00-00-00 00:00:00");
             ListAdapter = adapter;
             
             ListView.ItemClick += ListView_ItemSelected;

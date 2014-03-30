@@ -39,10 +39,16 @@ namespace FarApp
             var view = inflater.Inflate(Resource.Layout.ResultDetails, null);
             progress = view.FindViewById<ProgressBar>(Resource.Id.details_progress);
             switcher = view.FindViewById<ImageSwitcher>(Resource.Id.details_switcher);
+
             switcher.SetFactory(this);
             switcher.SetAnimateFirstView(false);
             switcher.SetOutAnimation(this.Activity, Android.Resource.Animation.SlideOutRight);
             switcher.SetInAnimation(this.Activity, Android.Resource.Animation.SlideInLeft);
+            if (images.Count != 0)
+            {
+                progress.Visibility = ViewStates.Invisible;
+                switcher.SetImageURI(Android.Net.Uri.Parse(images[0]));
+            }
             var downX = 0.0f;
             switcher.Touch += (object sender, View.TouchEventArgs e) =>
             {
@@ -118,7 +124,7 @@ namespace FarApp
         {
             if (requestCode == 101 && resultCode == Android.App.Result.Ok)
             {
-                if (images.Count == 0)
+                if (images.Count == 0 && IsVisible)
                 {
                     progress.Visibility = ViewStates.Invisible;
                     switcher.SetImageURI(Android.Net.Uri.Parse(data.GetStringExtra("imagePath")));

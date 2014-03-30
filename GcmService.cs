@@ -18,7 +18,18 @@ namespace FarApp
         protected override void OnRegistered(Context context, string registrationId)
         {
             Console.WriteLine(" i am registered!");
-            //Receive registration Id for sending GCM Push Notifications to
+            Activity1.Client.RegisterID = registrationId;
+            var preferences = GetSharedPreferences("registration", FileCreationMode.Private);
+            if (preferences.Contains("id"))
+            {
+
+            }
+            else
+            {
+                var editor = preferences.Edit();
+                editor.PutString("id", registrationId);
+                editor.Commit();
+            }
         }
 
         protected override void OnUnRegistered(Context context, string registrationId)
@@ -28,11 +39,9 @@ namespace FarApp
 
         protected override void OnMessage(Context context, Intent intent)
         {
-            Console.WriteLine("some message received!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            //Push Notification arrived - print out the keys/values
             if (intent != null && intent.Extras != null)
             {
-                CreateNotification();
+                CreateNotification(1,intent.Extras.GetString("message"));
             }
         }
 
@@ -45,13 +54,15 @@ namespace FarApp
         {
             Console.WriteLine(errorId);
         }
-        void CreateNotification()
+        void CreateNotification(int resultsCount,string message)
         {
             var notManager = GetSystemService(Context.NotificationService) as NotificationManager;
             var uiIntent = new Intent(this, typeof(Activity1));
-            var notification = new Notification(Android.Resource.Drawable.SymActionEmail, "notif");
+            uiIntent.PutExtra("need", true);
+            var notification = new Notification(Android.Resource.Drawable.SymActionEmail, "Новое объявление");
             notification.Flags = NotificationFlags.AutoCancel;
-            notification.SetLatestEventInfo(this,"title","content",PendingIntent.GetActivity(this,0,uiIntent,PendingIntentFlags.CancelCurrent));
+            notification.Defaults = NotificationDefaults.Vibrate;
+            notification.SetLatestEventInfo(this,"Новые объявления : "+resultsCount,message,PendingIntent.GetActivity(this,0,uiIntent,PendingIntentFlags.CancelCurrent));
             notManager.Notify(1, notification);
         }
     }

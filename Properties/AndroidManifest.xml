@@ -9,7 +9,7 @@
   <permission android:name="com.example.gcm.permission.C2D_MESSAGE"
       android:protectionLevel="signature" />
   <uses-permission android:name="com.example.gcm.permission.C2D_MESSAGE" />-->
-	<application android:theme="@style/Theme.Orange" android:label="FarApp"></application>
+	<application android:theme="@style/Theme.Orange" android:label="FarApp" android:icon="@drawable/orange_arrow"></application>
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>
