@@ -29,6 +29,7 @@ namespace FarApp
         {
             client = new HttpClient();
             client.Timeout = new TimeSpan(0, 0, 30);
+            InitFields();
             this.registerID = registerID;
         }
 
@@ -114,7 +115,8 @@ namespace FarApp
 
         public List<Result> GetNewAds(string time)
         {           
-            var requestContent = new StringContent(GetJsonRegisterID(time),Encoding.UTF8,"application/json");                     
+            var requestContent = new StringContent(GetJsonRegisterID(time),Encoding.UTF8,"application/json");
+            var sss = GetJsonRegisterID(time);
             var responce = client.PostAsync(MAIN_URL + "/get",requestContent).Result;
             if (responce.IsSuccessStatusCode)
             {
@@ -167,7 +169,7 @@ namespace FarApp
         string GetJsonRegisterID(string time)
         {
             var jRegisterId = new JObject();
-            jRegisterId.Add(new JProperty("registed_id", registerID));
+            jRegisterId.Add(new JProperty("register_id", registerID));
             jRegisterId.Add(new JProperty("time", time));
             return jRegisterId.ToString();
         }
