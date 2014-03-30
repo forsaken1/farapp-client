@@ -157,12 +157,20 @@ namespace FarApp
                 var category = item["category_id"].ToString();
                 foreach (var field in fields[category])
                 {
-                    result.Parameters.Add(field, item[field].ToString());
+                    try
+                    {
+                        result.Parameters.Add(field, item[field].ToString());
+                    }
+                    catch (Exception)
+                    {
+ 
+                    }
                 }
                 result.Key = item["key"].ToString();
                 result.Link = item["link"].ToString();
                 result.Details = item["annotation"].ToString();
                 result.Price = item["price"].ToString();
+                results.Add(result);
             }
             return results;
         }
