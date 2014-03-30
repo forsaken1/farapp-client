@@ -72,11 +72,16 @@ namespace FarApp
                 Refresh();
                 return true;
             }
+            if (item.ItemId == Resource.Id.listMenu_old)
+            {
+                Refresh(true);
+                return true;
+            }
             return base.OnOptionsItemSelected(item);
         }
         bool isRefreshingNow;
         List<Result> currentItems;
-        void Refresh()
+        void Refresh(bool isOld = false)
         {
             if (isRefreshingNow)
                 return;
@@ -86,7 +91,9 @@ namespace FarApp
                     if (Activity1.Client.RegisterID != "")
                     {
                         var falseTime = "2014-03-29 10:00:00";
-                        var results = Activity1.Client.GetNewAds(/*falseTime*/GetTime());
+                        var trueTime = GetTime();
+                        
+                        var results = Activity1.Client.GetNewAds(isOld ? falseTime : trueTime);
                         if (this.Activity != null)
                         {
                             this.Activity.RunOnUiThread(() =>

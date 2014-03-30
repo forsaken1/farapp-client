@@ -3,4 +3,7 @@
   <item android:id="@+id/listMenu_refresh"
         android:icon ="@drawable/ic_action_refresh"
         android:showAsAction="always"></item>
+  <item android:id="@+id/listMenu_old"
+        android:icon ="@drawable/ic_action_download"
+        android:showAsAction="always"></item>
 </menu>
