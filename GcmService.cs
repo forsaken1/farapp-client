@@ -61,7 +61,7 @@ namespace FarApp
             uiIntent.PutExtra("need", true);
             var notification = new Notification(Android.Resource.Drawable.SymActionEmail, "Новое объявление");
             notification.Flags = NotificationFlags.AutoCancel;
-            notification.Defaults = NotificationDefaults.Vibrate;
+            notification.Defaults = NotificationDefaults.Lights;
             notification.SetLatestEventInfo(this,"Новые объявления : "+resultsCount,message,PendingIntent.GetActivity(this,0,uiIntent,PendingIntentFlags.CancelCurrent));
             notManager.Notify(1, notification);
         }

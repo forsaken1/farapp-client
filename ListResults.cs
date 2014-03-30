@@ -18,6 +18,7 @@ namespace FarApp
     {
         public override void OnCreate(Bundle savedInstanceState)
         {
+            currentItems = new List<Result>();
             base.OnCreate(savedInstanceState);                        
         }
         ResultsAdapter adapter;
@@ -30,6 +31,9 @@ namespace FarApp
             ListView.ItemClick += ListView_ItemSelected;
             ListView.Divider = new ColorDrawable(Android.Graphics.Color.Orange);
             ListView.DividerHeight = 1;
+            if (currentItems.Count != 0)
+                adapter.AddItems(currentItems);
+            Refresh();
             this.SetHasOptionsMenu(true);
             base.OnViewCreated(view, savedInstanceState);
         }
@@ -37,7 +41,8 @@ namespace FarApp
         string GetTime()
         {
             var prefs = Activity.GetSharedPreferences("prefs", FileCreationMode.Private);
-            return prefs.GetString("time", "2014-03-29 10:00:00"); 
+            var lastTime = prefs.GetString("time", "2014-03-29 10:00:00");
+            return lastTime; 
         }
         void SetTime(string time)
         {
@@ -69,6 +74,7 @@ namespace FarApp
             }
             return base.OnOptionsItemSelected(item);
         }
+        List<Result> currentItems;
         void Refresh()
         {
             System.Threading.Tasks.Task.Factory.StartNew(() =>
@@ -80,7 +86,16 @@ namespace FarApp
                         {
                             this.Activity.RunOnUiThread(() =>
                                 {
-                                    adapter.AddItems(results.Item1);
+                                    if (results.Item1.Count == 0)
+                                    {
+                                        Toast.MakeText(this.Activity, "Новых объявлений не найдено", ToastLength.Long).Show();
+                                    }
+                                    else
+                                    {
+                                        adapter.Clear();
+                                        currentItems = results.Item1;
+                                        adapter.AddItems(results.Item1);                                        
+                                    }
                                     SetTime(results.Item2);
                                 });
                         }
@@ -99,6 +114,19 @@ namespace FarApp
                 }
             }
             base.OnActivityResult(requestCode, resultCode, data);
+        }
+
+        public override void OnDestroyView()
+        {
+            base.OnDestroyView();
+        }
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+        public override void OnDetach()
+        {
+            base.OnDetach();
         }
     }
 }
