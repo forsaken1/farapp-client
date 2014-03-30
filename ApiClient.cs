@@ -10,13 +10,26 @@ namespace FarApp
 {
     public class ApiClient
     {
-        string deviceUID;
+        const string MAIN_URL = "http://farapp.herokuapp.com";
+        string registerID;
+        public string RegisterID
+        {
+            get
+            {
+                return registerID;
+            }
+            set
+            {
+                registerID = value;
+            }
+        }        
+
         HttpClient client;
-        public ApiClient(string UUID)
+        public ApiClient(string registerID = "")
         {
             client = new HttpClient();
             client.Timeout = new TimeSpan(0, 0, 30);
-            deviceUID = UUID; 
+            this.registerID = registerID;
         }
 
         public string DownloadImage(string directoryPath, string url)
@@ -47,7 +60,7 @@ namespace FarApp
             else
             {
                 return imagePath;
-            }            
+            }    
         }
 
         public List<Result> GetNewAds()
@@ -75,9 +88,8 @@ namespace FarApp
                     MainPhotoUrl = "http://stat20.privet.ru/lr/0d14ce807f3d2da00814601cd8fec104"
                 },
             };
-
-            const string URL = "";
-            var responce = client.GetAsync(URL).Result;
+            var requestContent = new StringContent(GetJsonRegisterID());                     
+            var responce = client.PostAsync(MAIN_URL + "/get",requestContent).Result;
             if (responce.IsSuccessStatusCode)
             {
                 var content = responce.Content.ReadAsStringAsync().Result;
@@ -88,11 +100,28 @@ namespace FarApp
                 return new List<Result>();
             }
         }
+
+        public bool Register(int[] categoryIDs)
+        {
+            var jContent = new JObject();
+            jContent.Add("register_id",registerID);
+            jContent.Add("category",new JArray(categoryIDs));
+            var content = new StringContent(jContent.ToString());
+            var responce = client.PostAsync(MAIN_URL + "/register",content).Result;
+            return responce.IsSuccessStatusCode;
+        }
+
         List<Result> BuildResults(string json)
         {
             var results = new List<Result>();
             //TODO: Parsing
             return results;
+        }
+        string GetJsonRegisterID()
+        {
+            var jRegisterId = new JObject();
+            jRegisterId.Add(new JProperty("registed_id", registerID));
+            return jRegisterId.ToString();
         }
     }
 }

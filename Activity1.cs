@@ -24,20 +24,19 @@ namespace FarApp
             {
                 Directory.CreateDirectory(imagesPath);
             }
+            GcmClient.CheckDevice(this);
+            GcmClient.CheckManifest(this);
+            if (!GcmClient.IsRegisteredOnServer(this))
+            {
+                GcmClient.Register(this, GcmBroadcastReceiver.SENDER_IDS);
+            }
+            apiClient.RegisterID = GcmClient.GetRegistrationId(this);
         }
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            Init();
-            GcmClient.CheckDevice(this);
-            GcmClient.CheckManifest(this);
-            GcmClient.Register(this, GcmBroadcastReceiver.SENDER_IDS);
-            
-            if (GcmClient.IsRegisteredOnServer(this))
-            {
-                Console.WriteLine("Registered ID: " + GcmClient.GetRegistrationId(this));
-            }
+            Init();           
             SetContentView(Resource.Layout.Main);
             this.FragmentManager.BeginTransaction().Replace(Resource.Id.Main_Layout, new ListResults()).Commit();
         }
@@ -66,6 +65,14 @@ namespace FarApp
                 f.OnActivityResult(requestCode, resultCode, data);
             }
             base.OnActivityResult(requestCode, resultCode, data);
+        }
+        static ApiClient apiClient = new ApiClient();
+        public static ApiClient Client
+        {
+            get
+            {
+                return apiClient;
+            }
         }
     }
 }

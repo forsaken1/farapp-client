@@ -86,7 +86,9 @@
     <AndroidResource Include="Resources\Layout\Main.axml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Values\Strings.xml" />
+    <AndroidResource Include="Resources\Values\Strings.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
@@ -180,6 +182,8 @@
     <AndroidResource Include="Resources\Anim\slide_in_right.xml" />
     <AndroidResource Include="Resources\Anim\slide_out_left.xml" />
     <AndroidResource Include="Resources\Drawable\orange_arrow.png" />
+    <AndroidResource Include="Resources\Drawable\progress.xml" />
+    <AndroidResource Include="Resources\Values\Colors.xml" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="GCMClient">

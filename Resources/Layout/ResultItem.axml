@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/resultItem_image"
+        android:layout_margin="2dp"
         android:layout_weight="3" />
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,13 +17,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:layout_margin="4dp"
+            android:layout_margin="2dp"
             android:id="@+id/resultItem_title" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:layout_margin="4dp"
+            android:layout_margin="2dp"
             android:layout_below="@id/resultItem_title"
             android:id="@+id/resultItem_details" />
         <TextView
@@ -30,7 +31,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:gravity="right"
-            android:layout_margin="4dp"
+            android:layout_margin="2dp"
             android:textColor="#ffa500"
             android:layout_below="@id/resultItem_details"
             android:id="@+id/resultItem_price" />

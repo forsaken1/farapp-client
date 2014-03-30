@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Android.Graphics.Drawables;
 
 namespace FarApp
 {
@@ -27,6 +28,8 @@ namespace FarApp
             ListAdapter = adapter;
             
             ListView.ItemClick += ListView_ItemSelected;
+            ListView.Divider = new ColorDrawable(Android.Graphics.Color.Orange);
+            ListView.DividerHeight = 1;
             adapter.AddItems(results);
             base.OnViewCreated(view, savedInstanceState);
         }

@@ -19,6 +19,7 @@ namespace FarApp
         ImageSwitcher switcher;
         List<string> images;
         Result result;
+        ProgressBar progress;
         public ResultDetails(Result result)
         {
             this.result = result;
@@ -36,6 +37,7 @@ namespace FarApp
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate(Resource.Layout.ResultDetails, null);
+            progress = view.FindViewById<ProgressBar>(Resource.Id.details_progress);
             switcher = view.FindViewById<ImageSwitcher>(Resource.Id.details_switcher);
             switcher.SetFactory(this);
             switcher.SetAnimateFirstView(false);
@@ -118,6 +120,7 @@ namespace FarApp
             {
                 if (images.Count == 0)
                 {
+                    progress.Visibility = ViewStates.Invisible;
                     switcher.SetImageURI(Android.Net.Uri.Parse(data.GetStringExtra("imagePath")));
                 }
                 images.Add(data.GetStringExtra("imagePath"));                

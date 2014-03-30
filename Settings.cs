@@ -55,13 +55,21 @@ namespace FarApp
             var editor = preferences.Edit();
             editor.Remove("categories");
             var selectedCategories = new List<string>();
+            var indexes = new List<int>();
             for (int i = 0; i < listView.Count; i++)
             {
                 if (listView.IsItemChecked(i))
+                {
                     selectedCategories.Add(categories[i]);
+                    indexes.Add(i);
+                }
             }
             editor.PutStringSet("categories",selectedCategories);
             editor.Commit();
+            System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    Activity1.Client.Register(indexes.ToArray()); 
+                });
             base.OnPause();
         }            
     }

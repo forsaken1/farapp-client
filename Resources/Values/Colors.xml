@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+  <color name="transparent">#00000000</color>
+  <color name="actionBarTitleText">#ffffffff</color>
+  <color name="actionBarTabText">#ffc8c7c7</color>
+  <color name="spIconColor">#ffff5100</color>
+  <color name="color_preloader_center">#FF7600</color>
+  <color name="color_preloader_start">#FF9C00</color>
+  <color name="color_preloader_end">#FF5100</color>
+  <color name="lightblue_text">#ff246f8a</color>
+  <color name="orange">#ffff5100</color>
+  <color name="darkgray">#585551</color>
+  <color name="blue">#00c3ff</color>
+  <color name="white">#FFFFFF</color>
+</resources>

@@ -6,11 +6,23 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-        <ImageSwitcher
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="#22ffa500"
-            android:id="@+id/details_switcher" />
+            android:layout_height="300dp">
+            <ProgressBar
+                android:id="@+id/details_progress"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="visible"
+                android:indeterminateDrawable="@drawable/progress" />
+            <ImageSwitcher
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="#12ffa500"
+                android:id="@+id/details_switcher" />
+        </FrameLayout>
         <TextView
             android:layout_width="match_parent"
             android:padding="4dp"

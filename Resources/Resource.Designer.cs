@@ -51,8 +51,8 @@ namespace FarApp
 		public partial class Array
 		{
 			
-			// aapt resource value: 0x7f060000
-			public const int Categories = 2131099648;
+			// aapt resource value: 0x7f070000
+			public const int Categories = 2131165184;
 			
 			static Array()
 			{
@@ -73,6 +73,55 @@ namespace FarApp
 			}
 			
 			private Attribute()
+			{
+			}
+		}
+		
+		public partial class Color
+		{
+			
+			// aapt resource value: 0x7f060002
+			public const int actionBarTabText = 2131099650;
+			
+			// aapt resource value: 0x7f060001
+			public const int actionBarTitleText = 2131099649;
+			
+			// aapt resource value: 0x7f06000a
+			public const int blue = 2131099658;
+			
+			// aapt resource value: 0x7f060004
+			public const int color_preloader_center = 2131099652;
+			
+			// aapt resource value: 0x7f060006
+			public const int color_preloader_end = 2131099654;
+			
+			// aapt resource value: 0x7f060005
+			public const int color_preloader_start = 2131099653;
+			
+			// aapt resource value: 0x7f060009
+			public const int darkgray = 2131099657;
+			
+			// aapt resource value: 0x7f060007
+			public const int lightblue_text = 2131099655;
+			
+			// aapt resource value: 0x7f060008
+			public const int orange = 2131099656;
+			
+			// aapt resource value: 0x7f060003
+			public const int spIconColor = 2131099651;
+			
+			// aapt resource value: 0x7f060000
+			public const int transparent = 2131099648;
+			
+			// aapt resource value: 0x7f06000b
+			public const int white = 2131099659;
+			
+			static Color()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Color()
 			{
 			}
 		}
@@ -132,55 +181,58 @@ namespace FarApp
 			public const int orange_arrow = 2130837520;
 			
 			// aapt resource value: 0x7f020011
-			public const int progress_bg_orange = 2130837521;
+			public const int progress = 2130837521;
 			
 			// aapt resource value: 0x7f020012
-			public const int progress_horizontal_orange = 2130837522;
+			public const int progress_bg_orange = 2130837522;
 			
 			// aapt resource value: 0x7f020013
-			public const int progress_primary_orange = 2130837523;
+			public const int progress_horizontal_orange = 2130837523;
 			
 			// aapt resource value: 0x7f020014
-			public const int progress_secondary_orange = 2130837524;
+			public const int progress_primary_orange = 2130837524;
 			
 			// aapt resource value: 0x7f020015
-			public const int selectable_background_orange = 2130837525;
+			public const int progress_secondary_orange = 2130837525;
 			
 			// aapt resource value: 0x7f020016
-			public const int spinner_ab_default_orange = 2130837526;
+			public const int selectable_background_orange = 2130837526;
 			
 			// aapt resource value: 0x7f020017
-			public const int spinner_ab_disabled_orange = 2130837527;
+			public const int spinner_ab_default_orange = 2130837527;
 			
 			// aapt resource value: 0x7f020018
-			public const int spinner_ab_focused_orange = 2130837528;
+			public const int spinner_ab_disabled_orange = 2130837528;
 			
 			// aapt resource value: 0x7f020019
-			public const int spinner_ab_pressed_orange = 2130837529;
+			public const int spinner_ab_focused_orange = 2130837529;
 			
 			// aapt resource value: 0x7f02001a
-			public const int spinner_background_ab_orange = 2130837530;
+			public const int spinner_ab_pressed_orange = 2130837530;
 			
 			// aapt resource value: 0x7f02001b
-			public const int tab_indicator_ab_orange = 2130837531;
+			public const int spinner_background_ab_orange = 2130837531;
 			
 			// aapt resource value: 0x7f02001c
-			public const int tab_selected_focused_orange = 2130837532;
+			public const int tab_indicator_ab_orange = 2130837532;
 			
 			// aapt resource value: 0x7f02001d
-			public const int tab_selected_orange = 2130837533;
+			public const int tab_selected_focused_orange = 2130837533;
 			
 			// aapt resource value: 0x7f02001e
-			public const int tab_selected_pressed_orange = 2130837534;
+			public const int tab_selected_orange = 2130837534;
 			
 			// aapt resource value: 0x7f02001f
-			public const int tab_unselected_focused_orange = 2130837535;
+			public const int tab_selected_pressed_orange = 2130837535;
 			
 			// aapt resource value: 0x7f020020
-			public const int tab_unselected_orange = 2130837536;
+			public const int tab_unselected_focused_orange = 2130837536;
 			
 			// aapt resource value: 0x7f020021
-			public const int tab_unselected_pressed_orange = 2130837537;
+			public const int tab_unselected_orange = 2130837537;
+			
+			// aapt resource value: 0x7f020022
+			public const int tab_unselected_pressed_orange = 2130837538;
 			
 			static Drawable()
 			{
@@ -195,44 +247,47 @@ namespace FarApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f090000
-			public const int Main_Layout = 2131296256;
+			// aapt resource value: 0x7f0a0000
+			public const int Main_Layout = 2131361792;
 			
-			// aapt resource value: 0x7f090006
-			public const int details_contacts = 2131296262;
+			// aapt resource value: 0x7f0a0007
+			public const int details_contacts = 2131361799;
 			
-			// aapt resource value: 0x7f090005
-			public const int details_description = 2131296261;
+			// aapt resource value: 0x7f0a0006
+			public const int details_description = 2131361798;
 			
-			// aapt resource value: 0x7f090004
-			public const int details_parameters = 2131296260;
+			// aapt resource value: 0x7f0a0005
+			public const int details_parameters = 2131361797;
 			
-			// aapt resource value: 0x7f090003
-			public const int details_price = 2131296259;
+			// aapt resource value: 0x7f0a0004
+			public const int details_price = 2131361796;
 			
-			// aapt resource value: 0x7f090001
-			public const int details_switcher = 2131296257;
+			// aapt resource value: 0x7f0a0001
+			public const int details_progress = 2131361793;
 			
-			// aapt resource value: 0x7f090002
-			public const int details_title = 2131296258;
+			// aapt resource value: 0x7f0a0002
+			public const int details_switcher = 2131361794;
 			
-			// aapt resource value: 0x7f090009
-			public const int resultItem_details = 2131296265;
+			// aapt resource value: 0x7f0a0003
+			public const int details_title = 2131361795;
 			
-			// aapt resource value: 0x7f090007
-			public const int resultItem_image = 2131296263;
+			// aapt resource value: 0x7f0a000a
+			public const int resultItem_details = 2131361802;
 			
-			// aapt resource value: 0x7f09000a
-			public const int resultItem_price = 2131296266;
+			// aapt resource value: 0x7f0a0008
+			public const int resultItem_image = 2131361800;
 			
-			// aapt resource value: 0x7f090008
-			public const int resultItem_title = 2131296264;
+			// aapt resource value: 0x7f0a000b
+			public const int resultItem_price = 2131361803;
 			
-			// aapt resource value: 0x7f09000c
-			public const int settingsMenu = 2131296268;
+			// aapt resource value: 0x7f0a0009
+			public const int resultItem_title = 2131361801;
 			
-			// aapt resource value: 0x7f09000b
-			public const int settings_list = 2131296267;
+			// aapt resource value: 0x7f0a000d
+			public const int settingsMenu = 2131361805;
+			
+			// aapt resource value: 0x7f0a000c
+			public const int settings_list = 2131361804;
 			
 			static Id()
 			{
@@ -272,8 +327,8 @@ namespace FarApp
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f080000
-			public const int MainMenu = 2131230720;
+			// aapt resource value: 0x7f090000
+			public const int MainMenu = 2131296256;
 			
 			static Menu()
 			{
@@ -310,35 +365,35 @@ namespace FarApp
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f070001
-			public const int ActionBar_Solid_Orange = 2131165185;
+			// aapt resource value: 0x7f080001
+			public const int ActionBar_Solid_Orange = 2131230721;
 			
-			// aapt resource value: 0x7f070002
-			public const int ActionBar_Transparent_Orange = 2131165186;
+			// aapt resource value: 0x7f080002
+			public const int ActionBar_Transparent_Orange = 2131230722;
 			
-			// aapt resource value: 0x7f070005
-			public const int ActionBarTabStyle_Orange = 2131165189;
+			// aapt resource value: 0x7f080005
+			public const int ActionBarTabStyle_Orange = 2131230725;
 			
-			// aapt resource value: 0x7f070008
-			public const int ActionButton_CloseMode_Orange = 2131165192;
+			// aapt resource value: 0x7f080008
+			public const int ActionButton_CloseMode_Orange = 2131230728;
 			
-			// aapt resource value: 0x7f070004
-			public const int DropDownListView_Orange = 2131165188;
+			// aapt resource value: 0x7f080004
+			public const int DropDownListView_Orange = 2131230724;
 			
-			// aapt resource value: 0x7f070006
-			public const int DropDownNav_Orange = 2131165190;
+			// aapt resource value: 0x7f080006
+			public const int DropDownNav_Orange = 2131230726;
 			
-			// aapt resource value: 0x7f070003
-			public const int PopupMenu_Orange = 2131165187;
+			// aapt resource value: 0x7f080003
+			public const int PopupMenu_Orange = 2131230723;
 			
-			// aapt resource value: 0x7f070007
-			public const int ProgressBar_Orange = 2131165191;
+			// aapt resource value: 0x7f080007
+			public const int ProgressBar_Orange = 2131230727;
 			
-			// aapt resource value: 0x7f070000
-			public const int Theme_Orange = 2131165184;
+			// aapt resource value: 0x7f080000
+			public const int Theme_Orange = 2131230720;
 			
-			// aapt resource value: 0x7f070009
-			public const int Theme_Orange_Widget = 2131165193;
+			// aapt resource value: 0x7f080009
+			public const int Theme_Orange_Widget = 2131230729;
 			
 			static Style()
 			{
